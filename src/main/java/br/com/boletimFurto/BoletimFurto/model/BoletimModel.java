@@ -33,8 +33,7 @@ public class BoletimModel {
     private LocalDate dataOcorrencia;
     @NotBlank(message = "Informar o período")
     private String periodoOcorrencia;
-    @NotBlank(message = "Informar o local da ocorrência")
-    private String localOcorrencia;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @Valid
     private EnderecoModel enderecoModel;

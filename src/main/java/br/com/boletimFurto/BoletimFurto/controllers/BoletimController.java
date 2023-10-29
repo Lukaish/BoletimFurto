@@ -1,5 +1,7 @@
 package br.com.boletimFurto.BoletimFurto.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.boletimFurto.BoletimFurto.errors.BoletimNotFoundExceptions;
@@ -92,8 +96,8 @@ public class BoletimController {
         return "redirect:/";
     }
 
-    @PostMapping("/buscar")
-    public String buscarFiltro(Model model, @Param("placa") String placa ) {
+    @PostMapping("/buscar/placa")
+    public String buscarFiltroPlaca(Model model, @Param("placa") String placa) {
         if (placa == null) {
             return "redirect:/";
         }
@@ -101,6 +105,70 @@ public class BoletimController {
         List<BoletimModel> lBoletimModels = boletimService.buscarPlacas(placa);
         model.addAttribute("listaBoletins", lBoletimModels);
         return "/lista-boletins";
+    }
+
+    @PostMapping("/buscar/cor")
+    public String buscarFiltroCor(Model model, @Param("cor") String cor) {
+        if (cor == null) {
+            return "redirect:/";
+        }
+
+        List<BoletimModel> lBoletimModels = boletimService.buscarCor(cor);
+        model.addAttribute("listaBoletins", lBoletimModels);
+        return "/lista-boletins";
+    }
+
+    @PostMapping("/buscar/tipoVeiculo")
+    public String buscarFiltrotipoVeiculo(Model model, @Param("tipoVeiculo") String tipoVeiculo) {
+        if (tipoVeiculo == null) {
+            return "redirect:/";
+        }
+
+        List<BoletimModel> lBoletimModels = boletimService.buscarTipoVeiculo(tipoVeiculo);
+        model.addAttribute("listaBoletins", lBoletimModels);
+        return "/lista-boletins";
+    }
+
+    @PostMapping("/buscar/cidade")
+    public String buscarFiltroCidade(Model model, @Param("cidade") String cidade) {
+        if (cidade == null) {
+            return "redirect:/";
+        }
+
+        List<BoletimModel> lBoletimModels = boletimService.buscarCidade(cidade);
+        model.addAttribute("listaBoletins", lBoletimModels);
+        return "/lista-boletins";
+    }
+
+    @PostMapping("/buscar/peridoOcorrencia")
+    public String buscarFiltroPerioOcorrencia(Model model, @Param("peridoOcorrencia") String peridoOcorrencia) {
+        if (peridoOcorrencia == null) {
+            return "redirect:/";
+        }
+
+        List<BoletimModel> lBoletimModels = boletimService.buscarPeriodoOcorrencia(peridoOcorrencia);
+        model.addAttribute("listaBoletins", lBoletimModels);
+        return "/lista-boletins";
+    }
+
+    @GetMapping("/upload")
+    public String index() {
+        return "upload-boletim";
+    }
+
+    @PostMapping("/upload")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+        if (!file.isEmpty()) {
+            try {
+                // Salvar o arquivo no diretório especificado
+                File destinationFile = new File("uploads/" + file.getOriginalFilename());
+                file.transferTo(destinationFile);
+                return "redirect:/success";
+            } catch (IOException e) {
+                // Lida com exceções
+            }
+        }
+        return "redirect:/error";
     }
 
 }

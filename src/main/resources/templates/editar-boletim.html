@@ -32,6 +32,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/novo">Cadastro de boletins</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/upload">Upload de boletim</a>
+                    </li>
                 </ul>
             </div>
           </div>
@@ -72,17 +75,6 @@
                         <div class="col-sm-5">
                             <span style="color: red;" th:if="${#fields.hasErrors('periodoOcorrencia')}"
                                 th:errors="*{periodoOcorrencia}"></span>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label">Local ocorrência:</label>
-                        <div class="col-sm-5">
-                            <input class="form-control" type="text" th:field="*{localOcorrencia}">
-                        </div>
-                        <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('localOcorrencia')}"
-                                th:errors="*{localOcorrencia}"></span>
                         </div>
                     </div>
 
@@ -133,7 +125,7 @@
                         </div>
                     </div>
 
-                    <h3>Endereço:</h3>
+                    <h3>Local Ocorrência:</h3>
 
                     <input type="hidden" th:field="*{enderecoModel.id}">
                     <div class="row mb-3">
