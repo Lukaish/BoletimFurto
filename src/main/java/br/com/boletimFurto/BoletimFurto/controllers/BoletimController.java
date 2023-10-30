@@ -154,12 +154,12 @@ public class BoletimController {
         return "upload-boletim";
     }
 
-    @PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    // @PostMapping("/upload")
+    // public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
 
-        boletimService.upload(file);
+    //     boletimService.upload(file);
 
-        return "upload-boletim";
-    }
+    //     return "upload-boletim";
+    // }
 
 }
