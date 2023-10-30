@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -26,6 +27,7 @@ public class VeiculoModel {
 
     @Column
     @NotBlank(message = "Informar a data")
+    @Size(min=4, max = 4, message = "Ano inválido")
     private String anoFabricacao;
     @NotBlank(message = "Informar a cor")
     private String cor;

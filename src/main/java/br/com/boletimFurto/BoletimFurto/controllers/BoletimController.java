@@ -1,9 +1,7 @@
 package br.com.boletimFurto.BoletimFurto.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -157,18 +155,11 @@ public class BoletimController {
     }
 
     @PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-        if (!file.isEmpty()) {
-            try {
-                // Salvar o arquivo no diretório especificado
-                File destinationFile = new File("uploads/" + file.getOriginalFilename());
-                file.transferTo(destinationFile);
-                return "redirect:/success";
-            } catch (IOException e) {
-                // Lida com exceções
-            }
-        }
-        return "redirect:/error";
+    public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+
+        boletimService.upload(file);
+
+        return "upload-boletim";
     }
 
 }

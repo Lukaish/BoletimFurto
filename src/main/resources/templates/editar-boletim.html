@@ -15,46 +15,50 @@
 
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">Boletins de ocorrência de furtos</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <a class="navbar-brand" href="/">Boletins de ocorrência de furtos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Relatórios Boletins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/novo">Cadastro de boletins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/upload">Upload de boletim</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Relatórios Boletins</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/novo">Cadastro de boletins</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/upload">Upload de boletim</a>
-                    </li>
-                </ul>
-            </div>
-          </div>
         </div>
-      </nav>
+    </nav>
 
     <div class="container">
         <div class="row">
             <div class="col">
                 <h2 class="title" style="margin-bottom: 60px; margin-top: 100px;">Editar Boletim</h2>
-                
-                <form th:action="@{/editar/{id}(id=${boletim.identificador})}" 
-                th:object="${boletim}" method="post">
+
+                <form th:action="@{/editar/{id}(id=${boletim.identificador})}" th:object="${boletim}" method="post">
 
                     <h3>Ocorrência:</h3>
                     <input type="hidden" th:field="*{identificador}">
                     <div class="row mb-3">
                         <label class="col-sm-1 col-form-label">Data ocorrência:</label>
                         <div class="col-sm-5">
-                            <input class="form-control" type="date" th:field="*{dataOcorrencia}">
+                            <input class="form-control" type="date"
+                                th:text="${#temporals.format(dataOcorrencia, 'dd/MM/yyyy')}" th:field="*{dataOcorrencia}">
                         </div>
                         <div class="col-sm-5">
                             <span style="color: red;" th:if="${#fields.hasErrors('dataOcorrencia')}"
@@ -87,8 +91,8 @@
                             <input class="form-control" type="text" th:field="*{parteModel.nome}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('parteModel.nome')}" 
-                            th:errors="*{parteModel.nome}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('parteModel.nome')}"
+                                th:errors="*{parteModel.nome}"></span>
                         </div>
                     </div>
 
@@ -109,8 +113,8 @@
                             <input class="form-control" type="text" th:field="*{parteModel.telefone}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('parteModel.telefone')}" 
-                            th:errors="*{parteModel.telefone}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('parteModel.telefone')}"
+                                th:errors="*{parteModel.telefone}"></span>
                         </div>
                     </div>
 
@@ -120,8 +124,8 @@
                             <input class="form-control" type="text" th:field="*{parteModel.tipoEnvolvimento}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('parteModel.tipoEnvolvimento')}" 
-                            th:errors="*{parteModel.tipoEnvolvimento}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('parteModel.tipoEnvolvimento')}"
+                                th:errors="*{parteModel.tipoEnvolvimento}"></span>
                         </div>
                     </div>
 
@@ -134,8 +138,8 @@
                             <input class="form-control" type="text" th:field="*{enderecoModel.logradouro}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.logradouro')}" 
-                            th:errors="*{enderecoModel.logradouro}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.logradouro')}"
+                                th:errors="*{enderecoModel.logradouro}"></span>
                         </div>
                     </div>
 
@@ -145,8 +149,8 @@
                             <input class="form-control" type="text" th:field="*{enderecoModel.numero}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.numero')}" 
-                            th:errors="*{enderecoModel.numero}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.numero')}"
+                                th:errors="*{enderecoModel.numero}"></span>
                         </div>
                     </div>
 
@@ -156,8 +160,8 @@
                             <input class="form-control" type="text" th:field="*{enderecoModel.bairro}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.bairro')}" 
-                            th:errors="*{enderecoModel.bairro}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.bairro')}"
+                                th:errors="*{enderecoModel.bairro}"></span>
                         </div>
                     </div>
 
@@ -167,8 +171,8 @@
                             <input class="form-control" type="text" th:field="*{enderecoModel.cidade}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.cidade')}" 
-                            th:errors="*{enderecoModel.cidade}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.cidade')}"
+                                th:errors="*{enderecoModel.cidade}"></span>
                         </div>
                     </div>
 
@@ -178,8 +182,8 @@
                             <input class="form-control" type="text" th:field="*{enderecoModel.estado}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.estado')}" 
-                            th:errors="*{enderecoModel.estado}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('enderecoModel.estado')}"
+                                th:errors="*{enderecoModel.estado}"></span>
                         </div>
                     </div>
 
@@ -190,11 +194,11 @@
                     <div class="row mb-3">
                         <label class="col-sm-1 col-form-label">Ano fabricação:</label>
                         <div class="col-sm-5">
-                            <input class="form-control" type="date" th:field="*{veiculoModel.anoFabricacao}">
+                            <input class="form-control" type="number" th:field="*{veiculoModel.anoFabricacao}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.anoFabricacao')}" 
-                            th:errors="*{veiculoModel.anoFabricacao}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.anoFabricacao')}"
+                                th:errors="*{veiculoModel.anoFabricacao}"></span>
                         </div>
                     </div>
 
@@ -204,8 +208,8 @@
                             <input class="form-control" type="text" th:field="*{veiculoModel.cor}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.cor')}" 
-                            th:errors="*{veiculoModel.cor}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.cor')}"
+                                th:errors="*{veiculoModel.cor}"></span>
                         </div>
                     </div>
 
@@ -215,8 +219,8 @@
                             <input class="form-control" type="text" th:field="*{veiculoModel.marca}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.marca')}" 
-                            th:errors="*{veiculoModel.marca}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.marca')}"
+                                th:errors="*{veiculoModel.marca}"></span>
                         </div>
                     </div>
 
@@ -226,8 +230,8 @@
                             <input class="form-control" type="text" th:field="*{veiculoModel.tipoVeiculo}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.tipoVeiculo')}" 
-                            th:errors="*{veiculoModel.tipoVeiculo}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.tipoVeiculo')}"
+                                th:errors="*{veiculoModel.tipoVeiculo}"></span>
                         </div>
                     </div>
 
@@ -237,8 +241,8 @@
                             <input class="form-control" type="text" th:field="*{veiculoModel.emplacamento.placa}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.emplacamento.placa')}" 
-                            th:errors="*{veiculoModel.emplacamento.placa}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.emplacamento.placa')}"
+                                th:errors="*{veiculoModel.emplacamento.placa}"></span>
                         </div>
                     </div>
 
@@ -248,8 +252,8 @@
                             <input class="form-control" type="text" th:field="*{veiculoModel.emplacamento.estado}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.emplacamento.estado')}" 
-                            th:errors="*{veiculoModel.emplacamento.estado}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.emplacamento.estado')}"
+                                th:errors="*{veiculoModel.emplacamento.estado}"></span>
                         </div>
                     </div>
 
@@ -259,8 +263,8 @@
                             <input class="form-control" type="text" th:field="*{veiculoModel.emplacamento.cidade}">
                         </div>
                         <div class="col-sm-5">
-                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.emplacamento.cidade')}" 
-                            th:errors="*{veiculoModel.emplacamento.cidade}" ></span>
+                            <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.emplacamento.cidade')}"
+                                th:errors="*{veiculoModel.emplacamento.cidade}"></span>
                         </div>
                     </div>
                     <input type="hidden" th:field="*{veiculoModel.createdAt}">

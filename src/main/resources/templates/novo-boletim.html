@@ -61,7 +61,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-1 col-form-label">Data ocorrência:</label>
                         <div class="col-sm-5">
-                            <input class="form-control" type="date" th:field="*{dataOcorrencia}">
+                            <input class="form-control" type="date"  th:field="*{dataOcorrencia}">
                         </div>
                         <div class="col-sm-5">
                             <span style="color: red;" th:if="${#fields.hasErrors('dataOcorrencia')}"
@@ -90,7 +90,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-1 col-form-label">Nome:</label>
                         <div class="col-sm-5">
-                            <input class="form-control" type="text" th:field="*{parteModel.nome}">
+                            <input class="form-control" type="text"  th:field="*{parteModel.nome}">
                         </div>
                         <div class="col-sm-5">
                             <span style="color: red;" th:if="${#fields.hasErrors('parteModel.nome')}" 
@@ -193,7 +193,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-1 col-form-label">Ano fabricação:</label>
                         <div class="col-sm-5">
-                            <input class="form-control" type="date" th:field="*{veiculoModel.anoFabricacao}">
+                            <input class="form-control" type="number" th:field="*{veiculoModel.anoFabricacao}">
                         </div>
                         <div class="col-sm-5">
                             <span style="color: red;" th:if="${#fields.hasErrors('veiculoModel.anoFabricacao')}" 

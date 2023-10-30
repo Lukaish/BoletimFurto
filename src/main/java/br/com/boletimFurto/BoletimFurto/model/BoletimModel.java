@@ -15,9 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
 @Data
@@ -29,8 +27,7 @@ public class BoletimModel {
 
     @Column
     @NotNull(message = "Informar a data")
-    @PastOrPresent(message = "Data inválida")
-    private LocalDate dataOcorrencia;
+    private String dataOcorrencia;
     @NotBlank(message = "Informar o período")
     private String periodoOcorrencia;
 
